@@ -1,8 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import ClassCom from './ClassCom';
-import FunctionCom from './FunctionCom';
+import ToDoList from './To-Do-List';
 
 function App() {
   const handleClick = () => {
@@ -11,8 +10,7 @@ function App() {
 
   return (
     <div className='container'>
-      <ClassCom></ClassCom>
-      <FunctionCom></FunctionCom>
+      <ToDoList></ToDoList>
     </div>
   );
 }
