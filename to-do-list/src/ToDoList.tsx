@@ -22,10 +22,11 @@ const ToDoList: React.FC = () => {
             <div className="container">
                 <div className="board">
                     <ul>
-                        
-                        <li>{todo[0].text}</li>
-                        <li>{todo[1].text}</li>
-                        <li>{todo[2].text}</li>
+                        {
+                            todo.map((todo, index)=>(
+                                <li key={index}>{todo.text}</li>
+                            ))
+                        }
                     </ul>
                 </div>
             </div>
