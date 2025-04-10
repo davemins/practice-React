@@ -3,17 +3,25 @@ import React, { useState } from "react";
 type Todo = {
     id: number;
     text: string;
-    isCheck: boolean;
+    isChecked: boolean;
 }
 
 const ToDoList: React.FC = () => {
     const title: string = "오늘 할 일";
 
     const [todo, setTodo] = useState<Todo[]>([
-        {id : 1, text : '공부하기', isCheck : false},
-        {id : 2, text : '잠자기', isCheck : false},
-        {id : 3, text : '미팅하기', isCheck : false}
+        { id: 1, text: '공부하기', isChecked: false },
+        { id: 2, text: '잠자기', isChecked: false },
+        { id: 3, text: '미팅하기', isChecked: false }
     ]);
+
+    const handleCheckedChange = (itemId: number) => {
+        setTodo((prevItems) =>
+            prevItems.map((item) =>
+                item.id === itemId ? { ...item, isChecked: !item.isChecked } : item
+            )
+        )
+    }
 
     return (
         <div>
@@ -23,8 +31,18 @@ const ToDoList: React.FC = () => {
                 <div className="board">
                     <ul>
                         {
-                            todo.map((todo, index)=>(
-                                <li key={index}>{todo.text}</li>
+                            todo.map((todo, index) => (
+                                <li key={todo.id}>
+                                    <input type="checkbox" onChange={() => {
+                                        handleCheckedChange(todo.id);
+                                    }}></input>
+                                    <span>
+                                        {
+                                            todo.isChecked ?
+                                                <del>{todo.text}</del> : <span>{todo.text}</span>
+                                        }
+                                    </span>
+                                </li>
                             ))
                         }
                     </ul>
