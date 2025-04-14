@@ -27,10 +27,14 @@ const ToDoList: React.FC = () => {
     }
 
     const addTodo = () => {
-        if(newTodo.trim() !== ''){
-            setTodo([...todo, { id : Date.now(), text : newTodo, isChecked: false}])
+        if (newTodo.trim() !== '') {
+            setTodo([...todo, { id: Date.now(), text: newTodo, isChecked: false }])
             setNewTodo('');
         }
+    }
+
+    const removeTodo = (id: number) => {
+        setTodo(todo.filter((todo) => todo.id !== id))
     }
 
     return (
@@ -63,13 +67,16 @@ const ToDoList: React.FC = () => {
                                                 <del>{todo.text}</del> : <span>{todo.text}</span>
                                         }
                                     </span>
+                                    <button
+                                        onClick={() => removeTodo(todo.id)}
+                                        className='delbutton'>삭제</button>
                                 </li>
                             ))
                         }
                     </ul>
                 </div>
             </div>
-        </div>
+        </div >
 
     )
 }
