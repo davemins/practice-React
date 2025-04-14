@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ToDoList from './ToDoList';
+import Timer from './Timer';
 
 function App() {
   const handleClick = () => {
@@ -11,6 +12,7 @@ function App() {
   return (
     <div className='container'>
       <ToDoList></ToDoList>
+      <Timer></Timer>
     </div>
   );
 }
