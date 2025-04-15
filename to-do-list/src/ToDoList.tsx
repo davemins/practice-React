@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TodoModal from "./TodoModal";
 import { Button } from 'react-bootstrap';
 
 type Todo = {
@@ -18,6 +19,9 @@ const ToDoList: React.FC = () => {
 
     const [newTodo, setNewTodo] = useState<string>('');
 
+    const [showDetail, setShowDetail] = useState<boolean>(false);
+    const [selectedTodo, setSelectedTodo] = useState<Todo | null>(null);
+
     const handleCheckedChange = (itemId: number) => {
         setTodo((prevItems) =>
             prevItems.map((item) =>
@@ -35,6 +39,15 @@ const ToDoList: React.FC = () => {
 
     const removeTodo = (id: number) => {
         setTodo(todo.filter((todo) => todo.id !== id))
+    }
+
+    const handleTodoClick = (todo: Todo) => {
+        setShowDetail(true)
+        setSelectedTodo(todo)
+    }
+
+    const handleCloseDetail = () => {
+        setShowDetail(false)
     }
 
     return (
@@ -76,6 +89,7 @@ const ToDoList: React.FC = () => {
                     </ul>
                 </div>
             </div>
+            <TodoModal show={showDetail} todo={selectedTodo} handleClose={handleCloseDetail}></TodoModal>
         </div >
 
     )
